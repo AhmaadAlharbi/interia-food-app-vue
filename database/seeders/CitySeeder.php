@@ -13,10 +13,17 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        $cities = ['Aalborg', 'Aarhus', 'Aba', 'Abeokuta', 'Abovyan', 'Abuja', 'Accra', 'Adana', '...', 'Zaria', 'Zenica', 'Zhodzina', 'Zilina', 'Zvolen', 'Zürich', 'Other'];
+        $cityNames = ['Aalborg', 'Aarhus', 'Aba', 'Abeokuta', 'Abovyan', 'Abuja', 'Accra', 'Adana', '...', 'Zaria', 'Zenica', 'Zhodzina', 'Zilina', 'Zvolen', 'Zürich', 'Other'];
 
-        foreach ($cities as $city) {
-            City::create(['name' => $city]);
+        foreach ($cityNames as $cityName) {
+            try {
+                City::create(['name' => $cityName]);
+            } catch (\Exception $e) {
+                // Handle any potential exceptions here
+                // For example: logging or displaying an error message
+            }
         }
+
+        echo "City seeding completed successfully.\n";
     }
 }
